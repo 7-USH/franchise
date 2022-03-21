@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
+import 'package:franchise/Model/circle_bg.dart';
 import 'package:franchise/utils/details.dart';
 import 'package:franchise/widgets/card_design.dart';
 
@@ -9,14 +12,25 @@ class LeadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          // ignore: prefer_const_constructors
           flexibleSpace: Align(
             alignment: Alignment.centerRight,
+            // ignore: prefer_const_constructors
             child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.notifications_none,
-                color: Colors.white,
-              ),
+              padding: EdgeInsets.all(9.0),
+              child: CircleBackground(
+                onPressed: () {},
+                  widget: Icon(
+                    Icons.notifications_none,
+                    color: Color(0xFFd00657),
+                    size: 20,
+                  ),
+                  height1: 50,
+                  height2: 40,
+                  width1: 50,
+                  width2: 40,
+                
+              )
             ),
           ),
           elevation: 0,

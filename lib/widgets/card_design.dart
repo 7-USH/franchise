@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:franchise/screens/lead_form_designed.dart';
+import 'package:franchise/utils/constants.dart';
 
 class CardDesign extends StatelessWidget {
   final String name;
@@ -36,7 +39,7 @@ class CardDesign extends StatelessWidget {
                   Text(this.name,
                       style: const TextStyle(
                         fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                         fontSize: 18,
                       )),
                   Expanded(
@@ -47,7 +50,7 @@ class CardDesign extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 16,
                           fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -65,8 +68,8 @@ class CardDesign extends StatelessWidget {
                   padding: EdgeInsets.all(4.0),
                   child: Icon(
                     Icons.call,
-                    // size: 12.0,
-                    color: Color(0xff01661c),
+                   size: 15,
+                    color: Color(0xFFd00657),
                   ),
                 ),
                 Text(
@@ -82,7 +85,7 @@ class CardDesign extends StatelessWidget {
                   padding: EdgeInsets.all(4.0),
                   child: Icon(
                     Icons.email_outlined,
-                    // size: 12.0,
+                    size: 15.0,
                     color: Color(0xFFd00657),
                   ),
                 ),
@@ -129,7 +132,7 @@ class CardDesign extends StatelessWidget {
                 ),
                 const Spacer(),
                 Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(1.5),
                   child: Container(
                     width: 55,
                     height: 40,
@@ -140,6 +143,9 @@ class CardDesign extends StatelessWidget {
                     ),
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
+                        elevation: 3.7,
+                        shadowColor: Colors.black.withOpacity(0.85),
+                        backgroundColor: Colors.white,
                         // shadowColor: Colors.black,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0)),
@@ -160,27 +166,33 @@ class CardDesign extends StatelessWidget {
                   ),
                 ),
                Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(1.5),
                   child: Container(
                     width: 55,
                     height: 40,
                     margin: const EdgeInsets.all(0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      boxShadow: const [],
+                      boxShadow: [],
                     ),
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
+                        elevation: 4,
+                        shadowColor: Colors.black.withOpacity(0.85),
+                        backgroundColor: Colors.white,
                         // shadowColor: Colors.black,
                         shape: RoundedRectangleBorder(
+                            
                             borderRadius: BorderRadius.circular(5.0)),
                       ),
-                      child: const Padding(
-                          padding: EdgeInsets.all(0.0),
-                          child: Icon(
-                            Icons.delete_outlined,
-                            color: Color(0xFFd00657),
-                          ),),
+                      child: Center(
+                        child: const Padding(
+                            padding: EdgeInsets.all(0.0),
+                            child: Icon(
+                              Icons.delete_outlined,
+                              color: Color(0xFFd00657),
+                            ),),
+                      ),
                       onPressed: () {
                         if (status == "OPEN") {
                            Navigator.of(context).push(MaterialPageRoute(

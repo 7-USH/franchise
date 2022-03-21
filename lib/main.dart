@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:franchise/screens/add_lead.dart';
 import 'package:franchise/screens/home.dart';
+import 'package:franchise/screens/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: const MyHomePage(),
+      home: OnBoardingScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

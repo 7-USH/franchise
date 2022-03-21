@@ -1,7 +1,11 @@
+// ignore_for_file: unnecessary_this, prefer_const_constructors, unused_field, prefer_final_fields
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:franchise/Model/circle_bg.dart';
+import 'package:franchise/utils/constants.dart';
 
 class LeadFormDesign extends StatefulWidget {
   const LeadFormDesign({Key? key}) : super(key: key);
@@ -16,9 +20,10 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _dateController = TextEditingController();
   List<String> locations = ['Lead Status', 'OPEN', 'IN PROCESS', 'CLOSED'];
   String _selectedLocation = 'Lead Status';
-
+  DateTime _dateTime = DateTime(2022,12,24);
   @override
   void initState() {
     super.initState();
@@ -27,17 +32,30 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
   final List<DropdownMenuItem> items = [];
   String selectedValue = "";
   String _selectedStatus = 'A';
+  bool press = false;
+  Color onPressColor = const Color(0xff01661c).withOpacity(0.5);
+  Color buttonColor = const Color(0xff01661c).withOpacity(0.7);
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: const Align(
-          alignment: Alignment.centerRight,
+        flexibleSpace: Align(
+          alignment: Alignment.bottomRight,
           child: Padding(
             padding: EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.notifications_none,
-              color: Colors.white,
+            child: CircleBackground(
+              onPressed: () {},
+              widget: Icon(
+                Icons.notifications_none,
+                color: Color(0xFFd00657),
+                size: 20,
+              ),
+              height1: 50,
+              height2: 40,
+              width1: 50,
+              width2: 40,
             ),
           ),
         ),
@@ -68,8 +86,8 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
             child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 decoration: BoxDecoration(
-                  color: Colors.green.shade100,
-                  borderRadius:const BorderRadius.only(
+                  color: Colors.blueGrey.shade50, //Colors.green.shade100
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(40.0),
                     topRight: Radius.circular(40.0),
                   ),
@@ -84,7 +102,8 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(horizontal: 50),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
                                 // controller: _passwordController,
                                 obscureText: true,
@@ -106,37 +125,38 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                               ),
                             ),
                           ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: Container(
+                          //     alignment: Alignment.center,
+                          //     padding: const EdgeInsets.symmetric(horizontal: 50),
+                          //     child: TextFormField(
+                          //       // controller: _passwordController,
+                          //       obscureText: true,
+                          //       decoration: const InputDecoration(
+                          //         labelText: "Lead ID",
+                          //         labelStyle: TextStyle(
+                          //             fontFamily: 'Poppins',
+                          //             fontWeight: FontWeight.w100),
+                          //         // suffixIcon: _clearIconButton(_passwordController),
+                          //         prefixStyle: TextStyle(
+                          //             color: Colors.black, fontSize: 10),
+                          //       ),
+                          //       validator: (value) {
+                          //         return null;
+                          //       },
+                          //       onChanged: (_) {
+                          //         setState(() {});
+                          //       },
+                          //     ),
+                          //   ),
+                          // ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(horizontal: 50),
-                              child: TextFormField(
-                                // controller: _passwordController,
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                  labelText: "Lead ID",
-                                  labelStyle: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w100),
-                                  // suffixIcon: _clearIconButton(_passwordController),
-                                  prefixStyle: TextStyle(
-                                      color: Colors.black, fontSize: 10),
-                                ),
-                                validator: (value) {
-                                  return null;
-                                },
-                                onChanged: (_) {
-                                  setState(() {});
-                                },
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(horizontal: 50),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
                                 // controller: _passwordController,
                                 obscureText: true,
@@ -162,7 +182,8 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(horizontal: 50),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
                                 // controller: _passwordController,
                                 obscureText: true,
@@ -188,7 +209,8 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(horizontal: 50),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
                                 // controller: _passwordController,
                                 obscureText: true,
@@ -214,7 +236,8 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(horizontal: 50),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
                                 // controller: _passwordController,
                                 obscureText: true,
@@ -244,100 +267,127 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
-                                // controller: _passwordController,
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                  labelText: "Date", hintText: "DD-MM-YYYY",
-                                  labelStyle: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w100),
-                                  // suffixIcon: _clearIconButton(_passwordController),
-                                ),
-                                validator: (value) {
-                                  return null;
-                                },
-                                onChanged: (_) {
-                                  setState(() {});
-                                },
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              alignment: Alignment.center,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 50),
-                              child: DropdownButton<String>(
-                                  isExpanded: true,
-                                  underline: SizedBox(
-                                      height: 0.7,
-                                      child: Container(
-                                        color: Colors.black54,
-                                      )),
-                                  style: const TextStyle(
-                                      color: Colors.black54,
-                                      fontFamily: 'Poppins',
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w200),
-                                  items: locations.map((String val) {
-                                    return DropdownMenuItem<String>(
-                                      value: val,
-                                      child: Text(
-                                        val,
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w200),
-                                      ),
-                                    );
-                                  }).toList(),
-                                  value: _selectedLocation,
-                                  hint: const Text(
-                                    "Lead Status",
-                                    style: TextStyle(
-                                        color: Colors.black54,
+                                  keyboardType: TextInputType.none,
+                                  controller: _dateController,
+                                  decoration: InputDecoration(        
+                                    hintText:"YYYY-MM-DD",
+                                    labelText: "Date",
+                                    labelStyle: TextStyle(
                                         fontFamily: 'Poppins',
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w200),
+                                        fontWeight: FontWeight.w100),
+                                    // suffixIcon: _clearIconButton(_passwordController),
                                   ),
-                                  onChanged: (newVal) {
-                                    _selectedLocation = newVal!;
-                                    this.setState(() {});
-                                  }),
+                                  validator: (value) {
+                                    return null;
+                                  },
+                                  onChanged: (_) {
+                                    setState(() {});
+                                  },   
+                                  onTap: () async {
+                                 DateTime? dateTime = await showDatePicker
+                                 (context: context, 
+                                 initialDate: DateTime.now(), 
+                                 firstDate: DateTime(1900)
+                                 lastDate: DateTime(2100));
+
+                                  if(dateTime==null){
+                                    return;
+                                  }
+
+                                  setState(() {
+                                    _dateTime = dateTime;
+                                    _dateController.text = _dateTime.toString().substring(0,10);
+                                  });
+
+                                  },
+                                ),
                             ),
                           ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: Container(
+                          //     alignment: Alignment.center,
+                          //     padding:
+                          //         const EdgeInsets.symmetric(horizontal: 50),
+                          //     child: DropdownButton<String>(
+                          //         isExpanded: true,
+                          //         underline: SizedBox(
+                          //             height: 0.7,
+                          //             child: Container(
+                          //               color: Colors.black54,
+                          //             )),
+                          //         style: const TextStyle(
+                          //             color: Colors.black54,
+                          //             fontFamily: 'Poppins',
+                          //             fontSize: 15,
+                          //             fontWeight: FontWeight.w200),
+                          //         items: locations.map((String val) {
+                          //           return DropdownMenuItem<String>(
+                          //             value: val,
+                          //             child: Text(
+                          //               val,
+                          //               style: const TextStyle(
+                          //                   color: Colors.black54,
+                          //                   fontFamily: 'Poppins',
+                          //                   fontSize: 15,
+                          //                   fontWeight: FontWeight.w200),
+                          //             ),
+                          //           );
+                          //         }).toList(),
+                          //         value: _selectedLocation,
+                          //         hint: const Text(
+                          //           "Lead Status",
+                          //           style: TextStyle(
+                          //               color: Colors.black54,
+                          //               fontFamily: 'Poppins',
+                          //               fontSize: 15,
+                          //               fontWeight: FontWeight.w200),
+                          //         ),
+                          //         onChanged: (newVal) {
+                          //           _selectedLocation = newVal!;
+                          //           this.setState(() {
+
+                          //           });
+                          //         }),
+                          //   ),
+                          // ),
                           Padding(
                             padding: const EdgeInsets.only(
                                 top: 24.0, left: 8.0, right: 8.0, bottom: 24.0),
                             child: Container(
-                              // width: 500,
+                                // width: 500,
 
-                              // color: Color(0xff01661c),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 50),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Color(0xff01661c).withOpacity(0.7),
-                                  minimumSize: Size(500, 50),
-                                  // shadowColor: Colors.black,
-                                  onPrimary: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(0.0),
-                                  child: Text(
-                                    "SAVE",
-                                    style: TextStyle(
-                                        fontFamily: 'Poppins', fontSize: 15.0),
+                                // color: Color(0xff01661c),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 50),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    //TODO
+
+                                    setState(() {
+                                      press = !press;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: size.height / 4,
+                                    height: size.height / 22,
+                                    decoration: BoxDecoration(
+                                        color:
+                                            press ? onPressColor : buttonColor,
+                                        borderRadius: BorderRadius.circular(20),
+                                        boxShadow: kBoxShadows),
+                                    child: Center(
+                                      child: Text(
+                                        "SAVE",
+                                        style: TextStyle(
+                                            fontFamily: 'Poppins',
+                                            fontSize: size.width / 22,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
+                                )),
                           )
                         ],
                       ),

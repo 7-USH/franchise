@@ -17,6 +17,7 @@ class _CustomCardState extends State<CustomCard> {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: 10,
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Container(
           color: Colors.blueGrey.shade50,

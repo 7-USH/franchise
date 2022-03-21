@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:franchise/Model/circle_bg.dart';
 import 'package:franchise/screens/leads_screen.dart';
 import 'package:franchise/widgets/custom_lead_listview.dart';
 
@@ -15,9 +18,11 @@ class DashBoard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                children: const [
+                children: [
+                  // ignore: prefer_const_constructors
                   Padding(
                     padding: EdgeInsets.all(16.0),
+                    // ignore: prefer_const_constructors
                     child: Text(
                       'Hi, Den!',
                       style: TextStyle(
@@ -30,11 +35,22 @@ class DashBoard extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.notifications_none,
-                          color: Colors.grey,
-                        ),
+                        padding: const EdgeInsets.all(8.0),
+                        child:  CircleBackground(
+                          onPressed: () {
+
+                          },
+                            // ignore: prefer_const_constructors
+                            widget: Icon(
+                              Icons.notifications_none,
+                              color: Colors.grey,
+                              size: 20,
+                            ),
+                            height1: 50,
+                            height2: 40,
+                            width1: 50,
+                            width2: 40,
+                        )
                       ),
                     ),
                   )
@@ -60,7 +76,7 @@ class DashBoard extends StatelessWidget {
                           children: [
                             const Center(
                               child: Text(
-                                "Leads & Services",
+                                "Leads",
                                 style: TextStyle(
                                   color: Color(0xFFd00657),
                                   fontSize: 24,
@@ -251,7 +267,7 @@ class DashBoard extends StatelessWidget {
               ],
             ),
           ),
-          const CustomCard(),
+          CustomCard(),
         ],
       ),
     );
