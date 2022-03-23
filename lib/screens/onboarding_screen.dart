@@ -98,8 +98,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 fit: BoxFit.contain,
                                 child: Text(
                                   _content[index].message,
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20),
+                                  style: poppinFonts(Colors.black, FontWeight.w500,20),
                                   textAlign: TextAlign.center,
                                 ),
                               ),

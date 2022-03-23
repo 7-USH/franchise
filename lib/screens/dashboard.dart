@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:franchise/Model/circle_bg.dart';
 import 'package:franchise/screens/leads_screen.dart';
@@ -11,6 +12,7 @@ class DashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics:PageScrollPhysics(),
       child: Column(
         children: [
           Container(
@@ -43,7 +45,7 @@ class DashBoard extends StatelessWidget {
                             // ignore: prefer_const_constructors
                             widget: Icon(
                               Icons.notifications_none,
-                              color: Colors.grey,
+                              color: Color(0xFFd00657),
                               size: 20,
                             ),
                             height1: 50,
@@ -103,15 +105,16 @@ class DashBoard extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top : 16.0, bottom: 16.0, left: 16.0),
                                     child: Column(
-                                      children: const [
-                                        Text(
-                                          "80",
+                                      children: [
+                                        Countup(
+                                          begin: 0.0, 
+                                          end: 80,
+                                          duration: const Duration(seconds: 2),
                                           style: TextStyle(
                                               color: Color(0xFFd00657),
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.w800,
-                                              fontSize: 24),
-                                        ),
+                                              fontSize: 24),),
                                         Text(
                                           "TOTAL LEADS",
                                           style: TextStyle(
@@ -133,13 +136,15 @@ class DashBoard extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(left:8.0, top: 16.0, bottom: 16.0),
                                     child: Column(
-                                      children: const [
-                                        Text(
-                                          "16",
+                                      children:  [
+                                     Countup(
+                                          begin: 0.0,
+                                          end: 16,
+                                          duration: const Duration(seconds: 2),
                                           style: TextStyle(
                                               color: Color(0xFFd00657),
                                               fontFamily: 'Poppins',
-                                              fontWeight: FontWeight.w600,
+                                              fontWeight: FontWeight.w800,
                                               fontSize: 24),
                                         ),
                                         Text(
@@ -163,15 +168,16 @@ class DashBoard extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
-                                      children: const [
-                                        Text(
-                                          "97",
+                                      children: [
+                                       Countup(
+                                          begin: 0,
+                                          end: 97,
+                                          duration: const Duration(seconds: 2),
                                           style: TextStyle(
-                                            color: Color(0xFFd00657),
-                                            fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.w800,
-                                            fontSize: 24,
-                                          ),
+                                              color: Color(0xFFd00657),
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: 24),
                                         ),
                                         Text(
                                           "IN PROCESS",
@@ -194,9 +200,11 @@ class DashBoard extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
-                                      children: const [
-                                        Text(
-                                          "88",
+                                      children: [
+                                       Countup(
+                                          begin: 0.0,
+                                          end: 88,
+                                          duration: const Duration(seconds: 2),
                                           style: TextStyle(
                                               color: Color(0xFFd00657),
                                               fontFamily: 'Poppins',

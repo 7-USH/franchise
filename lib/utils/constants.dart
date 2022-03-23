@@ -20,3 +20,8 @@ List<BoxShadow> kButtonShadows = [
       spreadRadius: 1,
       blurRadius: 8)
 ];
+
+TextStyle poppinFonts(Color color,FontWeight fontWeight,double size){
+  return TextStyle(color: color,fontWeight: fontWeight,fontFamily: 'Poppins',fontSize: size);
+                      
+}

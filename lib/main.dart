@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:franchise/screens/add_lead.dart';
 import 'package:franchise/screens/home.dart';
@@ -14,6 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: const [
+        Locale('en','US'),
+      ],
+      localizationsDelegates: const [
+        CountryLocalizations.delegate,
+      ],
       title: 'Franchise',
       theme: ThemeData(
         primarySwatch: Colors.pink,

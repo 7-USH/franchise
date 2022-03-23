@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_this, prefer_const_constructors, unused_field, prefer_final_fields
 
+import 'package:country_code_picker/country_code.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
@@ -185,9 +187,20 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
-                                // controller: _passwordController,
-                                obscureText: true,
-                                decoration: const InputDecoration(
+                                // controller: _passwordController,98
+                                decoration: InputDecoration(
+                                  prefix: CountryCodePicker(
+                                    initialSelection: 'IN',
+                                    favorite: const ['+91','IN'],
+                                    padding: EdgeInsets.all(0.1),
+                                    enabled: true,
+                                    hideMainText: false,
+                                    showFlag: true,
+                                    showFlagMain: true,
+                                    showFlagDialog: true,
+                                    showOnlyCountryWhenClosed: false,
+                                    showCountryOnly: false,
+                                  ),
                                   labelText: "Phone Number",
                                   labelStyle: TextStyle(
                                       fontFamily: 'Poppins',
