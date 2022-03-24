@@ -40,7 +40,7 @@ class _CircleBackgroundState extends State<CircleBackground> {
         },
         onTapDown: (TapDownDetails details) {
           setState(() {
-            color = Colors.grey.shade500;
+            color = Colors.grey.shade200;
           });
         },
         onTapUp: (TapUpDetails details) {
