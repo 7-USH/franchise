@@ -31,9 +31,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     _controller.dispose();
   }
 
-  Color buttonColor = const Color(0xFFd00657);
-  Color onPressColor = const Color(0xFFd00657).withOpacity(0.5);
   bool press = false;
+  Color onPressColor = const Color(0xFFd00657).withOpacity(0.7);
+  Color buttonColor = const Color(0xFFd00657);
 
   @override
   Widget build(BuildContext context) {
@@ -152,9 +152,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     "Next",
                     style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: size.width / 20,
+                        fontSize: size.width / 22,
                         color: Colors.white,
-                        fontWeight: FontWeight.w500),
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
