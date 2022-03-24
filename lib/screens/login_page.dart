@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:franchise/screens/home.dart';
 import 'package:franchise/utils/constants.dart';
 
 class LoginPage extends StatefulWidget {
@@ -25,14 +26,14 @@ class _LoginPageState extends State<LoginPage> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           elevation: 0.0,
-          title: Center(
-              child: Text(
+          title: Text(
             "Leads",
             style: poppinFonts(const Color(0xFFd00657), FontWeight.bold, 45),
-          )),
+          ),
         ),
         backgroundColor: Colors.white.withOpacity(0.95),
         body: SingleChildScrollView(
@@ -123,6 +124,10 @@ class _LoginPageState extends State<LoginPage> {
                             setState(() {
                               press = !press;
                             });
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return MyHomePage();
+                            }));
                           },
                           child: Container(
                             width: size.width/1.5,

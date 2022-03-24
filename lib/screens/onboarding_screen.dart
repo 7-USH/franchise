@@ -137,7 +137,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   press = !press;
                 });
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return MyHomePage();
+                  return LoginPage();
                 }));
               },
               child: Container(
