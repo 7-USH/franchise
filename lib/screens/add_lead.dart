@@ -1,5 +1,6 @@
-// ignore_for_file: unnecessary_this, unnecessary_new, unused_field, prefer_const_constructors
+// ignore_for_file: unnecessary_this, unnecessary_new, unused_field, prefer_const_constructors, unnecessary_const
 
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
@@ -186,7 +187,19 @@ class _AddLeadsState extends State<AddLeads> {
                                 child: TextFormField(
                                   // controller: _passwordController,
                                   obscureText: true,
-                                  decoration: const InputDecoration(
+                                  decoration: InputDecoration(
+                                    prefix: CountryCodePicker(
+                                    initialSelection: 'IN',
+                                    favorite: const ['+91','IN'],
+                                    padding: EdgeInsets.all(0.1),
+                                    enabled: true,
+                                    hideMainText: false,
+                                    showFlag: true,
+                                    showFlagMain: true,
+                                    showFlagDialog: true,
+                                    showOnlyCountryWhenClosed: false,
+                                    showCountryOnly: false,
+                                  ),
                                     labelText: "Phone Number",
                                     labelStyle: TextStyle(
                                         fontFamily: 'Poppins',
