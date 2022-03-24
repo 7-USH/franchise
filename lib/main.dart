@@ -2,6 +2,7 @@ import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:franchise/screens/add_lead.dart';
 import 'package:franchise/screens/home.dart';
+import 'package:franchise/screens/login_page.dart';
 import 'package:franchise/screens/onboarding_screen.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: OnBoardingScreen(),
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }
