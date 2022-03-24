@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_this, prefer_const_constructors, unused_field, prefer_final_fields
+// ignore_for_file: unnecessary_this, prefer_const_constructors, unused_field, prefer_final_fields, unused_import
 
 import 'package:country_code_picker/country_code.dart';
 import 'package:country_code_picker/country_code_picker.dart';
