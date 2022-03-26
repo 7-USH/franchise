@@ -4,6 +4,7 @@ import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:franchise/Model/circle_bg.dart';
 import 'package:franchise/screens/leads_screen.dart';
+import 'package:franchise/screens/notification_scree.dart';
 import 'package:franchise/widgets/custom_lead_listview.dart';
 
 class DashBoard extends StatelessWidget {
@@ -12,7 +13,7 @@ class DashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics:PageScrollPhysics(),
+      physics: PageScrollPhysics(),
       child: Column(
         children: [
           Container(
@@ -37,11 +38,14 @@ class DashBoard extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:  CircleBackground(
-                          onPressed: () {
-
-                          },
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircleBackground(
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) {
+                                return NotificationScreen();
+                              }));
+                            },
                             // ignore: prefer_const_constructors
                             widget: Icon(
                               Icons.notifications_none,
@@ -52,8 +56,7 @@ class DashBoard extends StatelessWidget {
                             height2: 40,
                             width1: 50,
                             width2: 40,
-                        )
-                      ),
+                          )),
                     ),
                   )
                 ],
@@ -103,18 +106,20 @@ class DashBoard extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(top : 16.0, bottom: 16.0, left: 16.0),
+                                    padding: const EdgeInsets.only(
+                                        top: 16.0, bottom: 16.0, left: 16.0),
                                     child: Column(
                                       children: [
                                         Countup(
-                                          begin: 0.0, 
+                                          begin: 0.0,
                                           end: 80,
                                           duration: const Duration(seconds: 2),
                                           style: TextStyle(
                                               color: Color(0xFFd00657),
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.w800,
-                                              fontSize: 24),),
+                                              fontSize: 24),
+                                        ),
                                         Text(
                                           "TOTAL LEADS",
                                           style: TextStyle(
@@ -134,10 +139,11 @@ class DashBoard extends StatelessWidget {
                                     margin: const EdgeInsets.only(right: 4),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left:8.0, top: 16.0, bottom: 16.0),
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, top: 16.0, bottom: 16.0),
                                     child: Column(
-                                      children:  [
-                                     Countup(
+                                      children: [
+                                        Countup(
                                           begin: 0.0,
                                           end: 16,
                                           duration: const Duration(seconds: 2),
@@ -159,7 +165,7 @@ class DashBoard extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                   Container(
+                                  Container(
                                     width: 0.9,
                                     height: 45.0,
                                     color: const Color(0xFFd00657),
@@ -169,7 +175,7 @@ class DashBoard extends StatelessWidget {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       children: [
-                                       Countup(
+                                        Countup(
                                           begin: 0,
                                           end: 97,
                                           duration: const Duration(seconds: 2),
@@ -191,17 +197,17 @@ class DashBoard extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                   Container(
+                                  Container(
                                     width: 0.9,
                                     height: 45.0,
                                     color: const Color(0xFFd00657),
                                     margin: const EdgeInsets.only(right: 4),
-                                                                   ),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       children: [
-                                       Countup(
+                                        Countup(
                                           begin: 0.0,
                                           end: 88,
                                           duration: const Duration(seconds: 2),
@@ -226,7 +232,7 @@ class DashBoard extends StatelessWidget {
                                 ])
                           ],
                         ),
-            
+
                         color: Colors.green.shade100,
                         margin: const EdgeInsets.all(20),
                         shape: OutlineInputBorder(

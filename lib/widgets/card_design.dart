@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:franchise/screens/lead_form_designed.dart';
 import 'package:franchise/utils/constants.dart';
 
-class CardDesign extends StatelessWidget {
+class CardDesign extends StatefulWidget {
   final String name;
   final String leadId;
   final String desc;
@@ -14,7 +15,7 @@ class CardDesign extends StatelessWidget {
   final int phoneNumber;
   final String dateTime;
 
-  const CardDesign(
+  CardDesign(
       {Key? key,
       required this.name,
       required this.leadId,
@@ -27,6 +28,40 @@ class CardDesign extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<CardDesign> createState() => _CardDesignState();
+}
+
+class _CardDesignState extends State<CardDesign> {
+  bool press1 = false;
+  bool press2 = false;
+
+  void displayDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text("Confirm Record Deletion"),
+        content: const Text("Do you really want to delete this record ?"),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: const Text("Yes"),
+            onPressed: (){
+              //TODO:
+            },
+          ),
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("No"),
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
@@ -36,7 +71,7 @@ class CardDesign extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(
                 children: [
-                  Text(this.name,
+                  Text(this.widget.name,
                       style: const TextStyle(
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w400,
@@ -46,7 +81,7 @@ class CardDesign extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        this.leadId,
+                        this.widget.leadId,
                         style: const TextStyle(
                           fontSize: 16,
                           fontFamily: 'Poppins',
@@ -68,12 +103,12 @@ class CardDesign extends StatelessWidget {
                   padding: EdgeInsets.all(4.0),
                   child: Icon(
                     Icons.call,
-                   size: 15,
+                    size: 15,
                     color: Color(0xFFd00657),
                   ),
                 ),
                 Text(
-                  this.phoneNumber.toString(),
+                  this.widget.phoneNumber.toString(),
                   style: const TextStyle(
                     fontSize: 14,
                     fontFamily: 'Poppins',
@@ -90,7 +125,7 @@ class CardDesign extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  this.email,
+                  this.widget.email,
                   style: const TextStyle(
                     fontSize: 14,
                     fontFamily: 'Poppins',
@@ -100,7 +135,7 @@ class CardDesign extends StatelessWidget {
               ],
             ),
             Text(
-              this.desc,
+              this.widget.desc,
               style: const TextStyle(
                 color: Colors.grey,
                 fontSize: 12,
@@ -112,7 +147,7 @@ class CardDesign extends StatelessWidget {
               height: 10,
             ),
             Text(
-              this.instr,
+              this.widget.instr,
               style: const TextStyle(
                 color: Colors.grey,
                 fontSize: 12,
@@ -121,91 +156,80 @@ class CardDesign extends StatelessWidget {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  this.status.toUpperCase(),
+                  this.widget.status.toUpperCase(),
                   style: const TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
                   ),
                 ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(1.5),
-                  child: Container(
-                    width: 55,
-                    height: 40,
-                    margin: EdgeInsets.all(0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: const [],
-                    ),
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        elevation: 3.7,
-                        shadowColor: Colors.black.withOpacity(0.85),
-                        backgroundColor: Colors.white,
-                        // shadowColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0)),
-                      ),
-                      child: const Padding(
-                          padding: EdgeInsets.all(0.0),
-                          child: Icon(
-                            Icons.edit_outlined,
-                            color: Color(0xFFd00657),
-                          )),
-                      onPressed: () {
-                        if (status == "OPEN") {
-                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LeadFormDesign()));
-                        }
-                      },
-                    ),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    if (widget.status == "OPEN") {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => LeadFormDesign()));
+                    }
+                    press1 = !press1;
+                    setState(() {});
+                    Future.delayed(Duration(milliseconds: 200), () {
+                      press1 = !press1;
+                      setState(() {});
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: kButtonShadows,
+                            color: press1
+                                ? Colors.grey.withOpacity(0.5)
+                                : Colors.white),
+                        child: Icon(
+                          Icons.edit_outlined,
+                          color: Color(0xFFd00657),
+                          size: 20,
+                        )),
                   ),
                 ),
-               Padding(
-                  padding: const EdgeInsets.all(1.5),
-                  child: Container(
-                    width: 55,
-                    height: 40,
-                    margin: const EdgeInsets.all(0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: [],
-                    ),
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        elevation: 4,
-                        shadowColor: Colors.black.withOpacity(0.85),
-                        backgroundColor: Colors.white,
-                        // shadowColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                            
-                            borderRadius: BorderRadius.circular(5.0)),
-                      ),
-                      child: Center(
-                        child: const Padding(
-                            padding: EdgeInsets.all(0.0),
-                            child: Icon(
-                              Icons.delete_outlined,
-                              color: Color(0xFFd00657),
-                            ),),
-                      ),
-                      onPressed: () {
-                        if (status == "OPEN") {
-                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const LeadFormDesign()));
-                        }
-                      },
-                    ),
+                GestureDetector(
+                  onTap: () {
+                    displayDialog();
+                    press2 = !press2;
+                    setState(() {});
+                    Future.delayed(Duration(milliseconds: 200), () {
+                      press2 = !press2;
+                      setState(() {});
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: kButtonShadows,
+                            color: press2
+                                ? Colors.grey.withOpacity(0.5)
+                                : Colors.white),
+                        child: Icon(
+                          Icons.delete_outlined,
+                          color: Color(0xFFd00657),
+                          size: 20,
+                        )),
                   ),
                 ),
               ],
             ),
             const Padding(
-              padding: EdgeInsets.only(bottom: 4.0,top: 2.0),
+              padding: EdgeInsets.only(bottom: 4.0, top: 2.0),
               child: Center(
                 child: Text(
                   "09-03-2022",

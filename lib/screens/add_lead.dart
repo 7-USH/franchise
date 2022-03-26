@@ -66,7 +66,7 @@ class _AddLeadsState extends State<AddLeads> {
         centerTitle: true,
         backgroundColor: const Color(0xFFd00657),
         title: const Text(
-          'Add Leads',
+          'Add Lead',
           style: TextStyle(
             fontFamily: 'Poppins',
             color: Colors.white,
