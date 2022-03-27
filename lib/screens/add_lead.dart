@@ -131,31 +131,7 @@ class _AddLeadsState extends State<AddLeads> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Container(
-                                alignment: Alignment.center,
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 50),
-                                child: TextFormField(
-                                  obscureText: true,
-                                  decoration: const InputDecoration(
-                                    labelText: "Lead ID",
-                                    labelStyle: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w100),
-                                    prefixStyle: TextStyle(
-                                        color: Colors.black, fontSize: 10),
-                                  ),
-                                  validator: (value) {
-                                    return null;
-                                  },
-                                  onChanged: (_) {
-                                    setState(() {});
-                                  },
-                                ),
-                              ),
-                            ),
+                      
                             Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Container(
@@ -329,8 +305,8 @@ class _AddLeadsState extends State<AddLeads> {
                                 child: DropdownButton<String>(
                                     isExpanded: true,
                                     underline: SizedBox(
-                                        height: 0.7,
-                                        child: Container(
+                                        height: 0.8,
+                                        child: Container(  
                                           color: Colors.black54,
                                         )),
                                     style: const TextStyle(
