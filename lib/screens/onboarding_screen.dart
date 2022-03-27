@@ -42,15 +42,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       backgroundColor: Colors.white.withOpacity(0.95),
       body: Column(
         children: [
-          Center(
-            child: SafeArea(
-              child: Text(
-                'Leads',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  color: const Color(0xFFd00657),
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.w700,
+          Hero(
+            tag: "lead",
+            child: Center(
+              child: SafeArea(
+                child: Text(
+                  'Leads',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: const Color(0xFFd00657),
+                    fontSize: 45.0,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ),

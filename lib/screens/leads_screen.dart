@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:franchise/Model/circle_bg.dart';
+import 'package:franchise/screens/notification_screen.dart';
 import 'package:franchise/utils/details.dart';
 import 'package:franchise/widgets/card_design.dart';
 
@@ -19,7 +21,11 @@ class LeadPage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(9.0),
               child: CircleBackground(
-                onPressed: () {},
+                onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return NotificationScreen();
+                    }));
+                },
                   widget: Icon(
                     Icons.notifications_none,
                     color: Color(0xFFd00657),
@@ -48,11 +54,13 @@ class LeadPage extends StatelessWidget {
         ),
         backgroundColor:Color(0xFFd00657),
         body: Column(children: [
-          Container(
-            height: 10,
-            color: Color(0xFFd00657),
-            padding: const EdgeInsets.only(
-                top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
+              ClipPath(
+            clipper: ArcClipper(),
+            child: Container(
+              height: 8,
+              color: Colors.pink,
+              child: Center(child: Text("ArcClipper()")),
+            ),
           ),
           Expanded(
             child: Container(

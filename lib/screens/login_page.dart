@@ -30,9 +30,12 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           elevation: 0.0,
-          title: Text(
-            "Leads",
-            style: poppinFonts(const Color(0xFFd00657), FontWeight.bold, 45),
+          title: Hero(
+            tag: "lead",
+            child: Text(
+              "Leads",
+              style: poppinFonts(const Color(0xFFd00657), FontWeight.w700, 45),
+            ),
           ),
         ),
         backgroundColor: Colors.white.withOpacity(0.95),

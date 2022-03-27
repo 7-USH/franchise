@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:franchise/utils/constants.dart';
 import 'package:franchise/utils/details.dart';
 import 'package:franchise/widgets/notify_card.dart';
@@ -44,11 +45,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   key: UniqueKey(),
                   direction: DismissDirection.endToStart,
                   onDismissed: (direction) {
-                      notify.removeAt(index);
-                      setState(() {
-                        
-                      });
-                    
+                    notify.removeAt(index);
+                    HapticFeedback.vibrate();
+                    setState(() {});
                   },
                   child: NotifyCard(
                       desc: notify[index].desc,

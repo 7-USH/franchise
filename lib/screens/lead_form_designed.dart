@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:franchise/Model/circle_bg.dart';
+import 'package:franchise/screens/notification_screen.dart';
 import 'package:franchise/utils/constants.dart';
 
 class LeadFormDesign extends StatefulWidget {
@@ -48,7 +50,11 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: CircleBackground(
-              onPressed: () {},
+              onPressed: () {
+                   Navigator.push(context, MaterialPageRoute(builder: (_){
+                  return NotificationScreen();
+                }));
+              },
               widget: Icon(
                 Icons.notifications_none,
                 color: Color(0xFFd00657),
@@ -78,11 +84,13 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            height: 10,
-            color: Color(0xFFd00657),
-            padding: const EdgeInsets.only(
-                top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
+              ClipPath(
+            clipper: ArcClipper(),
+            child: Container(
+              height: 8,
+              color: Colors.pink,
+              child: Center(child: Text("ArcClipper()")),
+            ),
           ),
           Expanded(
             child: Container(
