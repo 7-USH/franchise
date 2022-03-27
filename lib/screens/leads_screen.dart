@@ -75,6 +75,7 @@ class LeadPage extends StatelessWidget {
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: Details.length,
+                physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Container(                    
                     child: CardDesign(
