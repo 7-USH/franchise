@@ -4,7 +4,7 @@ import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:franchise/Model/circle_bg.dart';
 import 'package:franchise/screens/leads_screen.dart';
-import 'package:franchise/screens/notification_scree.dart';
+import 'package:franchise/screens/notification_screen.dart';
 import 'package:franchise/widgets/custom_lead_listview.dart';
 
 class DashBoard extends StatelessWidget {

@@ -34,9 +34,9 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
   final List<DropdownMenuItem> items = [];
   String selectedValue = "";
   String _selectedStatus = 'A';
-  bool press = false;
-  Color onPressColor = const Color(0xff01661c).withOpacity(0.5);
-  Color buttonColor = const Color(0xff01661c).withOpacity(0.7);
+   bool press = false;
+  Color onPressColor = const Color(0xFFd00657).withOpacity(0.7);
+  Color buttonColor = const Color(0xFFd00657);
 
   @override
   Widget build(BuildContext context) {
@@ -374,33 +374,31 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 50),
                                 child: GestureDetector(
-                                  onTap: () {
-                                    //TODO
-
-                                    setState(() {
-                                      press = !press;
-                                    });
-                                  },
-                                  child: Container(
-                                    width: size.height / 4,
-                                    height: size.height / 22,
-                                    decoration: BoxDecoration(
-                                        color:
-                                            press ? onPressColor : buttonColor,
-                                        borderRadius: BorderRadius.circular(20),
-                                        boxShadow: kBoxShadows),
-                                    child: Center(
-                                      child: Text(
-                                        "SAVE",
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: size.width / 22,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                  ),
-                                )),
+                          onTap: () {
+                            setState(() {
+                              press = !press;
+                            });
+                            
+                          },
+                          child: Container(
+                            width: size.width/1.5,
+                            height: size.height / 15,
+                            decoration: BoxDecoration(
+                                color: press ? onPressColor : buttonColor,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: kBoxShadows),
+                            child: Center(
+                              child: Text(
+                                "Save",
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: size.width / 22,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        )),
                           )
                         ],
                       ),

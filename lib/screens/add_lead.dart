@@ -35,9 +35,9 @@ class _AddLeadsState extends State<AddLeads> {
   final List<DropdownMenuItem> items = [];
   String selectedValue = "";
 
-  bool press = false;
-  Color onPressColor =  const Color(0xff01661c).withOpacity(0.5);
-  Color buttonColor =  const Color(0xff01661c).withOpacity(0.7);
+   bool press = false;
+  Color onPressColor = const Color(0xFFd00657).withOpacity(0.7);
+  Color buttonColor = const Color(0xFFd00657);
 
   @override
   Widget build(BuildContext context) {
@@ -47,19 +47,23 @@ class _AddLeadsState extends State<AddLeads> {
         flexibleSpace: Align(
           alignment: Alignment.bottomRight,
           child: Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(8.0),
             child: CircleBackground(
-               onPressed: () {},
-                  widget: Icon(
-                    Icons.notifications_none,
-                    color: Color(0xFFd00657),
-                    size: 20,
-                  ),
-                  height1: 50,
-                  height2: 40,
-                  width1: 50,
-                  width2: 40,
+              onPressed: () {
+
+                //TODO
+
+              },
+              widget: Icon(
+                Icons.notifications_none,
+                color: Color(0xFFd00657),
+                size: 20,
               ),
+              height1: 50,
+              height2: 40,
+              width1: 50,
+              width2: 40,
+            ),
           ),
         ),
         elevation: 0,
@@ -103,7 +107,7 @@ class _AddLeadsState extends State<AddLeads> {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 alignment: Alignment.center,
                                 padding:
@@ -128,7 +132,7 @@ class _AddLeadsState extends State<AddLeads> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 alignment: Alignment.center,
                                 padding:
@@ -153,7 +157,7 @@ class _AddLeadsState extends State<AddLeads> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 alignment: Alignment.center,
                                 padding:
@@ -179,7 +183,7 @@ class _AddLeadsState extends State<AddLeads> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 alignment: Alignment.center,
                                 padding:
@@ -218,7 +222,7 @@ class _AddLeadsState extends State<AddLeads> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 alignment: Alignment.center,
                                 padding:
@@ -245,7 +249,7 @@ class _AddLeadsState extends State<AddLeads> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 alignment: Alignment.center,
                                 padding:
@@ -273,7 +277,7 @@ class _AddLeadsState extends State<AddLeads> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 alignment: Alignment.center,
                                 padding:
@@ -315,8 +319,9 @@ class _AddLeadsState extends State<AddLeads> {
                                 ),
                               ),
                             ),
+                            SizedBox(height: 8,),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 alignment: Alignment.center,
                                 padding:
@@ -371,32 +376,31 @@ class _AddLeadsState extends State<AddLeads> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 50),
                                 child: GestureDetector(
-                                  onTap: (){
-                                    //TODO
-
-                                    setState(() {
-                                      press =! press;
-                                    });
-                                  },
-                                  child: Container(
-                                width: size.height / 4,
-                                height: size.height / 22,
-                                decoration: BoxDecoration(
+                          onTap: () {
+                            setState(() {
+                              press = !press;
+                            });
+                            
+                          },
+                          child: Container(
+                            width: size.width/1.5,
+                            height: size.height / 15,
+                            decoration: BoxDecoration(
                                 color: press ? onPressColor : buttonColor,
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: kBoxShadows),
-                                child: Center(
-                                 child: Text(
-                                "SAVE",
-                                  style: TextStyle(
-                                   fontFamily: 'Poppins',
+                            child: Center(
+                              child: Text(
+                                "Save",
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
                                     fontSize: size.width / 22,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
-                   ),
-              ),
-                                )
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        )
                               ),
                             )
                           ],

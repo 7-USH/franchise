@@ -1,4 +1,5 @@
 import 'package:franchise/Model/lead_data.dart';
+import 'package:franchise/Model/notification_data.dart';
 
 List<Leads> Details = [
   Leads(
@@ -291,4 +292,55 @@ List<Leads> Details = [
       name: "Lorem ipsum",
       phoneNumber: 0123456789,
       status: "OPEN"),
+];
+
+List<Notification> notify = [
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22"),
+  Notification(
+      title: "Lorem Ispum",
+      desc: "Lorem ipsum dolor sit amet, consectetur",
+      dateTime: "12-01-22")
 ];
