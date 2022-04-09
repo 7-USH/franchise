@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             BottomNavigationBarItem(icon: Icon(Icons.groups), label: 'Leads'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.room_service_outlined), label: 'Service'),
+                icon: Icon(Icons.home_repair_service_outlined), label: 'Service'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline), label: 'Profile'),
           ],

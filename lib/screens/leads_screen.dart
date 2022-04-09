@@ -7,6 +7,7 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:franchise/Model/circle_bg.dart';
 import 'package:franchise/Model/lead_data.dart';
 import 'package:franchise/screens/notification_screen.dart';
+import 'package:franchise/utils/constants.dart';
 import 'package:franchise/utils/details.dart';
 import 'package:franchise/widgets/SearchWidget.dart';
 import 'package:franchise/widgets/card_design.dart';
@@ -33,7 +34,7 @@ class _LeadPageState extends State<LeadPage> {
         this.leads = Details;
       });
     }
-
+    print(query);
     final listLeads = leads.where((element) {
       final nameLower = element.name.toLowerCase();
       final leadName = query.toLowerCase();
@@ -42,6 +43,7 @@ class _LeadPageState extends State<LeadPage> {
 
       return nameLower.contains(leadName) || leadId.contains(searchId);
     }).toList();
+
     setState(() {
       this.leads = listLeads;
       this.query = query;
@@ -51,7 +53,7 @@ class _LeadPageState extends State<LeadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset :false,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           // ignore: prefer_const_constructors
           flexibleSpace: Align(

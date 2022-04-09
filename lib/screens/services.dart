@@ -8,13 +8,13 @@ class ServicePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Services",style: poppinFonts(Colors.white, FontWeight.w600, 22),),
+        title: Text("Services",style: poppinFonts(Colors.white, FontWeight.w700, 30),),
         centerTitle: true,
       ),
       body: const Center(
         child: Text(
           'Services Screen',
-          style: TextStyle(fontSize: 24.0),
+          style: TextStyle(fontSize: 30.0),
         ),
       ),
     );
