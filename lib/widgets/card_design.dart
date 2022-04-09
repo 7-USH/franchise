@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:franchise/screens/lead_form_designed.dart';
 import 'package:franchise/utils/constants.dart';
+import 'package:franchise/utils/details.dart';
 
 class CardDesign extends StatefulWidget {
   final String name;
@@ -13,6 +14,7 @@ class CardDesign extends StatefulWidget {
   final String status;
   final String email;
   final int phoneNumber;
+  final int index;
   final String dateTime;
 
   CardDesign(
@@ -20,6 +22,7 @@ class CardDesign extends StatefulWidget {
       required this.name,
       required this.leadId,
       required this.desc,
+      required this.index,
       required this.instr,
       required this.email,
       required this.phoneNumber,
@@ -38,25 +41,15 @@ class _CardDesignState extends State<CardDesign> {
   void displayDialog() {
     showDialog(
       context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
+      builder: (BuildContext context) => AlertDialog(
         title: const Text("Confirm Record Deletion"),
         content: const Text("Do you really want to delete this record ?"),
-        actions: <CupertinoDialogAction>[
-          CupertinoDialogAction(
-            isDefaultAction: true,
-            child: const Text("Yes"),
-            onPressed: (){
-              //TODO:
-            },
-          ),
-          CupertinoDialogAction(
-            isDefaultAction: true,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text("No"),
-          )
-        ],
+        actions: [
+            TextButton(onPressed: (){
+
+            }, child: Text("Yes")),
+            TextButton(onPressed: () {}, child: Text("No"))
+        ]
       ),
     );
   }

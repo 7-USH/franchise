@@ -26,7 +26,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             )),
         body: ListView.builder(
             itemCount: notify.length,
-            physics: const ClampingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (_, index) {
               return Dismissible(
                   background: Container(
@@ -37,9 +37,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   secondaryBackground: Container(
                     margin: const EdgeInsets.all(8),
                     color: Color(0xFFd00657),
-                    child: const Icon(
-                      Icons.delete,
-                      size: 30,
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.delete,
+                        size: 30,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   key: UniqueKey(),

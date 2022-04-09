@@ -51,22 +51,22 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Text(
                   "Hey,",
-                  style: poppinFonts(Colors.black, FontWeight.bold, 35),
+                  style: poppinFonts(Colors.black, FontWeight.bold, 40),
                 ),
                 Text("Login Now.",
-                    style: poppinFonts(Colors.black, FontWeight.bold, 35)),
+                    style: poppinFonts(Colors.black, FontWeight.bold, 40)),
                 SizedBox(
-                  height: size.height / 20,
+                  height: size.height / 30,
                 ),
-                Row(
-                  children: [
-                    Text("if you are new/ "),
-                    Text(
-                      " Create New",
-                      style: poppinFonts(Colors.black, FontWeight.bold, 14),
-                    )
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     Text("if you are new/ "),
+                //     Text(
+                //       " Create New",
+                //       style: poppinFonts(Colors.black, FontWeight.bold, 14),
+                //     )
+                //   ],
+                // ),
                 SizedBox(
                   height: size.height / 15,
                 ),

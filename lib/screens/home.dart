@@ -17,7 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static final List<Widget> _options = <Widget>[
     const DashBoard(),
-    const LeadPage(),
+    LeadPage(),
     const ServicePage(),
     const Profile()
   ];
@@ -43,12 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
             decoration: BoxDecoration(
               border: Border.all(color: Colors.white, width: 4),
               shape: BoxShape.circle,
-              color: const Color(0xff01661c).withOpacity(0.7),
+              color: const Color(0xFFd00657),
             ),
             child: const Icon(Icons.add, size: 40),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar: BottomNavigationBar( 
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
           onTap: _onItemTap,

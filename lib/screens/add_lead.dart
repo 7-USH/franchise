@@ -29,6 +29,7 @@ class _AddLeadsState extends State<AddLeads> {
 
   @override
   void initState() {
+
     super.initState();
   }
 
@@ -52,11 +53,9 @@ class _AddLeadsState extends State<AddLeads> {
             padding: EdgeInsets.all(8.0),
             child: CircleBackground(
               onPressed: () {
-
                 Navigator.push(context, MaterialPageRoute(builder: (_){
                   return NotificationScreen();
                 }));
-
               },
               widget: Icon(
                 Icons.notifications_none,
@@ -350,6 +349,9 @@ class _AddLeadsState extends State<AddLeads> {
                                       }),
                                 ),
                               ),
+                               SizedBox(
+                            height: size.height/20,
+                          ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     top: 24.0, left: 8.0, right: 8.0, bottom: 24.0),

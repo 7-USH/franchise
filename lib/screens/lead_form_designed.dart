@@ -372,6 +372,9 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                           //         }),
                           //   ),
                           // ),
+                          SizedBox(
+                            height: size.height/15,
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(
                                 top: 24.0, left: 8.0, right: 8.0, bottom: 24.0),
