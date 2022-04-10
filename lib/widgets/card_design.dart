@@ -64,31 +64,28 @@ class _CardDesignState extends State<CardDesign> {
       child: ListTile(
         title: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Row(
-                children: [
-                  Text(this.widget.name,
+            Row(
+              children: [
+                Text(this.widget.name,
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                    )),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      this.widget.leadId,
                       style: const TextStyle(
+                        fontSize: 16,
                         fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18,
-                      )),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        this.widget.leadId,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                        ),
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Divider(
               color: Colors.grey.shade300,
@@ -224,7 +221,7 @@ class _CardDesignState extends State<CardDesign> {
                   ),
                 ),
               ],
-            ),
+            ), 
             const Padding(
               padding: EdgeInsets.only(bottom: 4.0, top: 2.0),
               child: Center(
@@ -242,9 +239,9 @@ class _CardDesignState extends State<CardDesign> {
           ],
         ),
       ),
-      elevation: 8,
+      elevation: 5,
       shadowColor: Colors.black,
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.all(10),
       shape: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(color: Colors.white)),

@@ -33,10 +33,12 @@ class _ProfileState extends State<Profile> {
         ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 15),
-        child: Column(
-          children: [
-          CustomDropDown()
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+            CustomDropDown()
+            ],
+          ),
         ),
       )
     );
