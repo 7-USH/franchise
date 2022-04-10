@@ -48,7 +48,7 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
         flexibleSpace: Align(
           alignment: Alignment.bottomRight,
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.only(right: 10,bottom: 5),
             child: CircleBackground(
               onPressed: () {
                    Navigator.push(context, MaterialPageRoute(builder: (_){

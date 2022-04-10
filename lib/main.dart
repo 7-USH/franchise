@@ -4,6 +4,7 @@ import 'package:franchise/screens/add_lead.dart';
 import 'package:franchise/screens/home.dart';
 import 'package:franchise/screens/leads_screen.dart';
 import 'package:franchise/screens/login_page.dart';
+import 'package:franchise/screens/logo_screen.dart';
 import 'package:franchise/screens/notification_screen.dart';
 import 'package:franchise/screens/onboarding_screen.dart';
 
