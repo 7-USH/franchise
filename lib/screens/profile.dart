@@ -1,4 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:franchise/Model/circle_bg.dart';
+import 'package:franchise/screens/notification_screen.dart';
 import 'package:franchise/utils/constants.dart';
 import 'package:franchise/widgets/customDropDown.dart';
 
@@ -10,24 +15,29 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile",style: TextStyle(
+          centerTitle: true,
+          backgroundColor: Color(0xFFd00657),
+          title: Text(
+            'Profile',
+            style: TextStyle(
               fontFamily: 'Poppins',
               color: Colors.white,
               fontSize: 30.0,
               fontWeight: FontWeight.w700,
-            ),),
-        centerTitle: true,
-      ),
+            ),
+          ),
+        ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 15),
-        child: CustomDropDown(text: "Call to Nothing",),
+        child: Column(
+          children: [
+          CustomDropDown()
+          ],
+        ),
       )
     );
   }

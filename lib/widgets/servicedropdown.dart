@@ -3,35 +3,50 @@
 import 'package:flutter/material.dart';
 import 'package:franchise/utils/constants.dart';
 
-class CustomDropDown extends StatefulWidget {
-  CustomDropDown({Key? key}) : super(key: key);
+class ServiceCustomDropDown extends StatefulWidget {
+  ServiceCustomDropDown({Key? key}) : super(key: key);
 
   @override
-  State<CustomDropDown> createState() => _CustomDropDownState();
+  State<ServiceCustomDropDown> createState() => _ServiceCustomDropDownState();
 }
 
-class _CustomDropDownState extends State<CustomDropDown> {
+class _ServiceCustomDropDownState extends State<ServiceCustomDropDown> {
   List<ExpansionItem> items = [
     ExpansionItem(
         icon: Icon(Icons.person),
-        header: "Header 1",
+        header: "My Profile",
         body:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae auctor eu augue ut lectus arcu."),
     ExpansionItem(
         icon: Icon(Icons.info),
-        header: "Header 2",
+        header: "About us",
         body:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae auctor eu augue ut lectus arcu."),
     ExpansionItem(
         icon: Icon(Icons.lock),
-        header: "Header 3",
+        header: "Change Password",
         body:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae auctor eu augue ut lectus arcu."),
     ExpansionItem(
-        icon: Icon(Icons.logout),
-        header: "Header 4",
+        icon: Icon(Icons.login),
+        header: "Logout",
         body:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae auctor eu augue ut lectus arcu."),
+    ExpansionItem(
+        icon: Icon(Icons.password),
+        header: "Check Password",
+        body:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae auctor eu augue ut lectus arcu."),
+    ExpansionItem(
+        icon: Icon(Icons.share),
+        header: "Share our App",
+        body:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae auctor eu augue ut lectus arcu."),
+    ExpansionItem(
+        icon: Icon(Icons.contact_support),
+        header: "Contact Us",
+        body:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae auctor eu augue ut lectus arcu."),                        
   ];
 
   @override
@@ -75,7 +90,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
               );
             },
             body: Container(
-              padding: EdgeInsets.symmetric(horizontal:20),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 item.body,
                 textAlign: TextAlign.justify,
