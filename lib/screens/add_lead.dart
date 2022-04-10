@@ -23,8 +23,8 @@ class _AddLeadsState extends State<AddLeads> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  List<String> locations = ['Lead Status', 'OPEN', 'IN PROCESS', 'CLOSED'];
-  String _selectedLocation = 'Lead Status';
+  List<String> locations = [ 'OPEN', 'IN PROCESS', 'CLOSED'];
+  String _selectedLocation = 'OPEN';
   final _dateController = TextEditingController();
 
   @override
@@ -118,7 +118,6 @@ class _AddLeadsState extends State<AddLeads> {
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 50),
                                   child: TextFormField(
-                                    obscureText: true,
                                     decoration: const InputDecoration(
                                       labelText: "Name",
                                       labelStyle: TextStyle(
@@ -144,7 +143,6 @@ class _AddLeadsState extends State<AddLeads> {
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 50),
                                   child: TextFormField(
-                                    obscureText: true,
                                     decoration: const InputDecoration(
                                       labelText: "Email ID",
                                       labelStyle: TextStyle(
@@ -171,7 +169,6 @@ class _AddLeadsState extends State<AddLeads> {
                                       const EdgeInsets.symmetric(horizontal: 50),
                                   child: TextFormField(
                                     // controller: _passwordController,
-                                    obscureText: true,
                                     decoration: InputDecoration(
                                       prefix: CountryCodePicker(
                                       initialSelection: 'IN',
@@ -210,7 +207,6 @@ class _AddLeadsState extends State<AddLeads> {
                                       const EdgeInsets.symmetric(horizontal: 50),
                                   child: TextFormField(
                                     // controller: _passwordController,
-                                    obscureText: true,
                                     decoration: const InputDecoration(
                                       labelText: "Description",
                                       labelStyle: TextStyle(
@@ -237,7 +233,6 @@ class _AddLeadsState extends State<AddLeads> {
                                       const EdgeInsets.symmetric(horizontal: 50),
                                   child: TextFormField(
                                     // controller: _passwordController,
-                                    obscureText: true,
                                     decoration: const InputDecoration(
                                       labelText: "Instruction",
                         
@@ -307,13 +302,15 @@ class _AddLeadsState extends State<AddLeads> {
                                   alignment: Alignment.center,
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 50),
-                                  child: DropdownButton<String>(
-                                      isExpanded: true,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Lead Status",style: poppinFonts(Colors.black54, FontWeight.w200, 17),),
+                                      SizedBox(width: 15,),
+                                      DropdownButton<String>(
                                       underline: SizedBox(
                                           height: 0.8,
-                        
-                                          child: Container(
-                                            
+                                          child: Container(   
                                             color: Colors.black54,
                                           )),
                                       style: const TextStyle(
@@ -336,7 +333,7 @@ class _AddLeadsState extends State<AddLeads> {
                                       }).toList(),
                                       value: _selectedLocation,
                                       hint: const Text(
-                                        "Lead Status",
+                                        "Lead Status    ",
                                         style: TextStyle(
                                             color: Colors.black54,
                                             fontFamily: 'Poppins',
@@ -347,6 +344,8 @@ class _AddLeadsState extends State<AddLeads> {
                                         _selectedLocation = newVal!;
                                         this.setState(() {});
                                       }),
+                                    ]
+                                  ),
                                 ),
                               ),
                                SizedBox(

@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: size.height / 10,
+                  height: size.height / 11,
                 ),
                 Text(
                   "Hey,",

@@ -42,15 +42,19 @@ class _CardDesignState extends State<CardDesign> {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text("Confirm Record Deletion"),
-        content: const Text("Do you really want to delete this record ?"),
-        actions: [
-            TextButton(onPressed: (){
-
-            }, child: Text("Yes")),
-            TextButton(onPressed: () {}, child: Text("No"))
-        ]
-      ),
+          title: const Text("Confirm Record Deletion"),
+          content: const Text("Do you really want to delete this record ?"),
+          actions: [
+            TextButton(onPressed: () {
+              //TODO:
+            }, 
+            child: Text("Yes")),
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("No"))
+          ]),
     );
   }
 

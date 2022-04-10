@@ -9,7 +9,7 @@ List<BoxShadow> kBoxShadows = [
   BoxShadow(
       color: Colors.white.withOpacity(0.5),
       offset: const Offset(-3, -4),
-      spreadRadius: -2,
+      spreadRadius: -1,
       blurRadius: 20),
 ];
 

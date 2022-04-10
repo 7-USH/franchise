@@ -116,7 +116,6 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                                   const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
                                 // controller: _passwordController,
-                                obscureText: true,
                                 decoration: const InputDecoration(
                                   labelText: "Name",
                                   labelStyle: TextStyle(
@@ -169,7 +168,6 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                                   const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
                                 // controller: _passwordController,
-                                obscureText: true,
                                 decoration: const InputDecoration(
                                   labelText: "Email ID",
                                   labelStyle: TextStyle(
@@ -234,7 +232,6 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                                   const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
                                 // controller: _passwordController,
-                                obscureText: true,
                                 decoration: const InputDecoration(
                                   labelText: "Description",
                                   labelStyle: TextStyle(
@@ -260,8 +257,7 @@ class _LeadFormDesignState extends State<LeadFormDesign> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 50),
                               child: TextFormField(
-                                // controller: _passwordController,
-                                obscureText: true,
+                                // controller: _passwordControll
                                 decoration: const InputDecoration(
                                   labelText: "Instruction",
 
