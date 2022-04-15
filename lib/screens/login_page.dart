@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:franchise/Networking/api_calling.dart';
+import 'package:franchise/Networking/data.dart';
 import 'package:franchise/screens/home.dart';
 import 'package:franchise/utils/constants.dart';
+import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,10 +19,19 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
+  final passwordString = '';
+  final phoneNumber = '';
 
   bool press = false;
   Color onPressColor = const Color(0xFFd00657).withOpacity(0.7);
   Color buttonColor = const Color(0xFFd00657);
+
+  late final NetWorking apiObject;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,10 +116,23 @@ class _LoginPageState extends State<LoginPage> {
                                 borderSide:
                                     BorderSide(color: Colors.grey, width: 2),
                               ),
-                              suffix: Text(
-                                "Forgot?",
-                                style: poppinFonts(const Color(0xFFd00657),
-                                    FontWeight.bold, 17),
+                              suffix: GestureDetector(
+                                onTap: () async {
+                                  apiObject = NetWorking(
+                                      password: "",
+                                      phoneNumber: _idController.text);
+
+                                  String? data =
+                                      await apiObject.forgetPassword();
+
+                                  Map valueMap = jsonDecode(data);
+                                  print(valueMap);
+                                },
+                                child: Text(
+                                  "Forgot?",
+                                  style: poppinFonts(const Color(0xFFd00657),
+                                      FontWeight.bold, 17),
+                                ),
                               ),
                               prefixIcon: Icon(
                                 Icons.lock,
@@ -123,17 +148,30 @@ class _LoginPageState extends State<LoginPage> {
                           height: size.height / 10,
                         ),
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             setState(() {
                               press = !press;
                             });
+
+                            // apiObject = NetWorking(
+                            //     password: _passwordController.text,
+                            //     phoneNumber: _idController.text);
+
+                            // String? data = await apiObject.getLoginDetails();
+                            // Map valueMap = jsonDecode(data);
+                            // print(valueMap);
+
+                            // Data.setData(valueMap['id'].toString());
+                            // print(Data.id);
+                            //TODO
+
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return MyHomePage();
                             }));
                           },
                           child: Container(
-                            width: size.width/1.5,
+                            width: size.width / 1.5,
                             height: size.height / 15,
                             decoration: BoxDecoration(
                                 color: press ? onPressColor : buttonColor,
