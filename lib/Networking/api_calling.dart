@@ -1,7 +1,9 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, unused_import, unused_local_variable
 
+import 'dart:convert';
 import 'dart:math';
 
+import 'package:franchise/Model/login_model.dart';
 import 'package:http/http.dart' as http;
 
 class NetWorking {
@@ -51,5 +53,24 @@ class NetWorking {
       print(response.reasonPhrase);
     }
     return response.reasonPhrase.toString();
+  }
+}
+
+class ApiService {
+  Future<LoginResponseModel> login(LoginRequestModel loginRequestModel) async {
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('https://fleenks.com/mv/api/fr-login'));
+    request.fields.addAll(loginRequestModel.toJson());
+
+    http.StreamedResponse response = await request.send();
+    var res = await http.Response.fromStream(response);
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> map = json.decode(res.body);
+
+      return LoginResponseModel.fromJson(map);
+    } else {
+      throw "Error";
+    }
   }
 }

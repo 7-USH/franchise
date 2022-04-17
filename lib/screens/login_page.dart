@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, deprecated_member_use, unused_local_variable, unused_field, unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
+import 'package:franchise/Model/login_model.dart';
 import 'package:franchise/Networking/api_calling.dart';
-import 'package:franchise/Networking/data.dart';
 import 'package:franchise/screens/home.dart';
+import 'package:franchise/screens/wrapper.dart';
 import 'package:franchise/utils/constants.dart';
 import 'dart:convert';
 
@@ -21,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   final passwordString = '';
   final phoneNumber = '';
+  late LoginRequestModel object;
+  bool isApiCallProcess = false;
 
   bool press = false;
   Color onPressColor = const Color(0xFFd00657).withOpacity(0.7);
@@ -30,11 +33,19 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
+    object = LoginRequestModel(mobile: "", password: "");
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    return Wrapper(
+      isAsynCall: isApiCallProcess,
+      child: _uiPage(context),
+    );
+  }
+
+  Widget _uiPage(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
@@ -70,15 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: size.height / 30,
                 ),
-                // Row(
-                //   children: [
-                //     Text("if you are new/ "),
-                //     Text(
-                //       " Create New",
-                //       style: poppinFonts(Colors.black, FontWeight.bold, 14),
-                //     )
-                //   ],
-                // ),
                 SizedBox(
                   height: size.height / 15,
                 ),
@@ -126,7 +128,20 @@ class _LoginPageState extends State<LoginPage> {
                                       await apiObject.forgetPassword();
 
                                   Map valueMap = jsonDecode(data);
-                                  print(valueMap);
+
+                                  String text;
+
+                                  if (valueMap['status'] == 1) {
+                                    text =
+                                        "New Password & Login Details Sent On E-mail";
+                                  } else {
+                                    text =
+                                        "Something went Wrong, please try again !";
+                                  }
+                                  final snackBar =
+                                      SnackBar(content: Text(text));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
                                 },
                                 child: Text(
                                   "Forgot?",
@@ -152,23 +167,35 @@ class _LoginPageState extends State<LoginPage> {
                             setState(() {
                               press = !press;
                             });
+                            object.mobile = _idController.text;
+                            object.password = _passwordController.text;
 
-                            // apiObject = NetWorking(
-                            //     password: _passwordController.text,
-                            //     phoneNumber: _idController.text);
+                            setState(() {
+                              isApiCallProcess = true;
+                            });
 
-                            // String? data = await apiObject.getLoginDetails();
-                            // Map valueMap = jsonDecode(data);
-                            // print(valueMap);
+                            ApiService apiService = ApiService();
+                            apiService.login(object).then((value) {
+                              setState(() {
+                                isApiCallProcess = false;
+                              });
 
-                            // Data.setData(valueMap['id'].toString());
-                            // print(Data.id);
-                            //TODO
+                              if (value.status == 1) {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (_) {
+                                  return MyHomePage();
+                                }));
+                              }
+                              else {
+                                final snackBar =
+                                    SnackBar(content: Text(value.message));
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
 
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return MyHomePage();
-                            }));
+                            });
+
+                            print(object.toJson());
                           },
                           child: Container(
                             width: size.width / 1.5,

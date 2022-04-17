@@ -35,7 +35,7 @@ class _LeadPageState extends State<LeadPage> {
       });
     }
     print(query);
-    final listLeads = leads.where((element) {
+      final listLeads = leads.where((element) {
       final nameLower = element.name.toLowerCase();
       final leadName = query.toLowerCase();
       final leadId = element.leadID.toLowerCase();
@@ -51,7 +51,7 @@ class _LeadPageState extends State<LeadPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(

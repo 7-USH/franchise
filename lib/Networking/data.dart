@@ -1,5 +1,5 @@
 class Data {
-  static String id = '';
+  static late String id='';
   static void setData(String id) {
     id = id;
   }
