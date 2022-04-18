@@ -20,7 +20,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   int pageIndex = 0;
   late PageController _controller;
 
-
   @override
   void initState() {
     super.initState();

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:franchise/Model/login_model.dart';
 import 'package:franchise/Networking/api_calling.dart';
+import 'package:franchise/Networking/data.dart';
 import 'package:franchise/screens/home.dart';
 import 'package:franchise/screens/wrapper.dart';
 import 'package:franchise/utils/constants.dart';
@@ -189,16 +190,17 @@ class _LoginPageState extends State<LoginPage> {
                               });
 
                               if (value.status == 1) {
-
                                 final SharedPreferences sharedPreferences =
                                     await SharedPreferences.getInstance();
                                 sharedPreferences.setBool("isLoggedIn", true);
+
+                                print(value.data);
+                                Data.setMap(value.data);
 
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (_) {
                                   return MyHomePage();
                                 }));
-        
                               } else {
                                 final snackBar =
                                     SnackBar(content: Text(value.message));
