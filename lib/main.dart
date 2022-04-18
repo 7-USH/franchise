@@ -2,6 +2,7 @@
 
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:franchise/screens/logo_screen.dart';
 import 'package:franchise/screens/onboarding_screen.dart';
 import 'package:franchise/widgets/spinner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: whereToGo ? const SpinnerPage() : OnBoardingScreen(),
+      home: whereToGo ? const LogoScreen() : OnBoardingScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
