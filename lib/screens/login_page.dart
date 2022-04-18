@@ -189,15 +189,16 @@ class _LoginPageState extends State<LoginPage> {
                               });
 
                               if (value.status == 1) {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (_) {
-                                  return MyHomePage();
-                                }));
 
                                 final SharedPreferences sharedPreferences =
                                     await SharedPreferences.getInstance();
                                 sharedPreferences.setBool("isLoggedIn", true);
-                                
+
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (_) {
+                                  return MyHomePage();
+                                }));
+        
                               } else {
                                 final snackBar =
                                     SnackBar(content: Text(value.message));
