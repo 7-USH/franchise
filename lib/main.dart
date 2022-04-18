@@ -1,23 +1,28 @@
+// ignore_for_file: avoid_print
+
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:franchise/Networking/data.dart';
 import 'package:franchise/screens/onboarding_screen.dart';
 import 'package:franchise/widgets/spinner.dart';
-import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  bool status = sharedPreferences.getBool("isLoggedIn") ?? false;
+  print(status);
+  runApp(MyApp(whereToGo: status));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  const MyApp({Key? key, required this.whereToGo}) : super(key: key);
+  final bool whereToGo;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       supportedLocales: const [
-        Locale('en','US'),
+        Locale('en', 'US'),
       ],
       localizationsDelegates: const [
         CountryLocalizations.delegate,
@@ -26,8 +31,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: OnBoardingScreen(),
+      home: whereToGo ? const SpinnerPage() : OnBoardingScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
-} 
+}

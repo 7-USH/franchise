@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, deprecated_member_use, unused_local_variable, unused_field, unrelated_type_equality_checks
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, deprecated_member_use, unused_local_variable, unused_field, unrelated_type_equality_checks, prefer_const_constructors_in_immutables, unnecessary_null_comparison, prefer_if_null_operators
 
 import 'package:flutter/material.dart';
 import 'package:franchise/Model/login_model.dart';
@@ -7,10 +7,10 @@ import 'package:franchise/screens/home.dart';
 import 'package:franchise/screens/wrapper.dart';
 import 'package:franchise/utils/constants.dart';
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
+  LoginPage({Key? key}) : super(key: key);
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -170,12 +170,20 @@ class _LoginPageState extends State<LoginPage> {
                             object.mobile = _idController.text;
                             object.password = _passwordController.text;
 
+                            final SharedPreferences sharedPreferences =
+                                await SharedPreferences.getInstance();
+
+                            sharedPreferences.setString(
+                                'mobile', object.mobile);
+                            sharedPreferences.setString(
+                                'password', object.password);
+
                             setState(() {
                               isApiCallProcess = true;
                             });
 
                             ApiService apiService = ApiService();
-                            apiService.login(object).then((value) {
+                            apiService.login(object).then((value) async {
                               setState(() {
                                 isApiCallProcess = false;
                               });
@@ -185,14 +193,17 @@ class _LoginPageState extends State<LoginPage> {
                                     MaterialPageRoute(builder: (_) {
                                   return MyHomePage();
                                 }));
-                              }
-                              else {
+
+                                final SharedPreferences sharedPreferences =
+                                    await SharedPreferences.getInstance();
+                                sharedPreferences.setBool("isLoggedIn", true);
+                                
+                              } else {
                                 final snackBar =
                                     SnackBar(content: Text(value.message));
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackBar);
                               }
-
                             });
 
                             print(object.toJson());

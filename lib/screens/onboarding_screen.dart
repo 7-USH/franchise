@@ -5,6 +5,7 @@ import 'package:franchise/screens/home.dart';
 import 'package:franchise/screens/login_page.dart';
 import 'package:franchise/utils/constants.dart';
 import 'package:franchise/utils/onboard_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   OnBoardingScreen({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final List<OnBoardModel> _content = Utils.getOnBoard();
   int pageIndex = 0;
   late PageController _controller;
+
 
   @override
   void initState() {
@@ -101,7 +103,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 fit: BoxFit.contain,
                                 child: Text(
                                   _content[index].message,
-                                  style: poppinFonts(Colors.black, FontWeight.w500,20),
+                                  style: poppinFonts(
+                                      Colors.black, FontWeight.w500, 20),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
