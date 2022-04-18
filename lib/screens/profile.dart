@@ -35,7 +35,7 @@ class _ProfileState extends State<Profile> {
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
@@ -46,6 +46,10 @@ class _ProfileState extends State<Profile> {
                     backgroundImage: NetworkImage(
                         "https://fleenks.com/mv/"+Data.map['photo_path'].toString()),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(Data.map['name'].toString(),style:poppinFonts(Colors.black, FontWeight.w600, 20),),
                 ),
                 CustomDropDown()
               ],
