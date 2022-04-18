@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_element
 
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -20,6 +20,27 @@ class ServicePage extends StatelessWidget {
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) {
       return LoginPage();
     }), (route) => false);
+  }
+
+  void displayDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+          title: const Text("Confirm logout"),
+          content: const Text("Do you sure you want to Logout ?"),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  LogOut(context);
+                },
+                child: Text("Yes")),
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("No"))
+          ]),
+    );
   }
 
   @override
@@ -53,7 +74,7 @@ class ServicePage extends StatelessWidget {
                     ),
                     IconButton(
                         onPressed: () {
-                          LogOut(context);
+                          displayDialog(context);
                         },
                         icon: Icon(Icons.logout_sharp))
                   ]),
