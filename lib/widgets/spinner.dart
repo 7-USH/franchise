@@ -1,7 +1,8 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:franchise/utils/constants.dart';
-
 
 class SpinnerPage extends StatefulWidget {
   const SpinnerPage({Key? key}) : super(key: key);
@@ -13,18 +14,29 @@ class SpinnerPage extends StatefulWidget {
 class _SpinnerPageState extends State<SpinnerPage> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade50,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Leads",style: poppinFonts(const Color(0xFFd00657), FontWeight.bold, 30),),
-          const SizedBox(height: 25,),
-          const SpinKitCircle(
-             color: Color(0xFFd00657),
-          size: 60.0,
-          ),
-        ],
-      ));
+        backgroundColor: Colors.blueGrey.shade50,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: size.height/3,
+            ),
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage(
+                "assets/images/moneyvisionImage.png",
+              ),
+            ),
+            SizedBox(
+              height: size.height / 4,
+            ),
+            const SpinKitCircle(
+              color: Color(0xFFd00657),
+              size: 60.0,
+            ),
+          ],
+        ));
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:franchise/screens/home.dart';
 import 'package:franchise/screens/logo_screen.dart';
 import 'package:franchise/screens/onboarding_screen.dart';
+import 'package:franchise/widgets/spinner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {

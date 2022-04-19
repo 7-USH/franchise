@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, deprecated_member_use, unused_local_variable, unused_field, unrelated_type_equality_checks, prefer_const_constructors_in_immutables, unnecessary_null_comparison, prefer_if_null_operators
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, deprecated_member_use, unused_local_variable, unused_field, unrelated_type_equality_checks, prefer_const_constructors_in_immutables, unnecessary_null_comparison, prefer_if_null_operators, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:franchise/Model/login_model.dart';
@@ -7,6 +7,7 @@ import 'package:franchise/Networking/data.dart';
 import 'package:franchise/screens/home.dart';
 import 'package:franchise/screens/wrapper.dart';
 import 'package:franchise/utils/constants.dart';
+import 'package:franchise/widgets/spinner.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,14 +20,18 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _modelScaffoldKey = GlobalKey<ScaffoldState>();
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _forgotPassController = TextEditingController();
   final passwordString = '';
   final phoneNumber = '';
   late LoginRequestModel object;
   bool isApiCallProcess = false;
+  bool isModalProcess = true;
 
   bool press = false;
+  bool forpress = false;
   Color onPressColor = const Color(0xFFd00657).withOpacity(0.7);
   Color buttonColor = const Color(0xFFd00657);
 
@@ -38,6 +43,155 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
   }
 
+  void MyModalBottomSheet(Size size) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return isModalProcess
+                  ? Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        color: Color(0xff757575),
+                        child: Container(
+                          height: 300,
+                          width: 200,
+                          padding: EdgeInsets.all(20.0),
+                          decoration: BoxDecoration(
+                            color: Colors.blueGrey.shade50,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25.0),
+                              topRight: Radius.circular(25.0),
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "Forgot your Password?",
+                                style: poppinFonts(
+                                    Colors.black, FontWeight.bold, 22),
+                              ),
+                              SizedBox(
+                                height: size.height / 40,
+                              ),
+                              Text("We'll email you with new credentials."),
+                              SizedBox(
+                                height: size.height / 30,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 35.0, right: 35),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.phone,
+                                  controller: _forgotPassController,
+                                  decoration: InputDecoration(
+                                    labelText: "Enter Phone Number",
+                                    fillColor: Colors.white,
+                                    labelStyle: poppinFonts(
+                                        Colors.black, FontWeight.w100, 15),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                  ),
+                                  onChanged: (value) {
+                                    print(value);
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: size.height / 30,
+                              ),
+                              GestureDetector(
+                                onTap: () async {
+                                  setState(() {
+                                    forpress = !forpress;
+                                  });
+
+                                  apiObject = NetWorking(
+                                      password: "",
+                                      phoneNumber:
+                                          _forgotPassController.text.trim());
+
+                                  setState(() {
+                                    isModalProcess = false;
+                                  });
+
+                                  await apiObject
+                                      .forgetPassword()
+                                      .then((value) {
+                                    setState(() {
+                                      isModalProcess = true;
+                                    });
+
+                                    Map valueMap = jsonDecode(value);
+                                    String text;
+
+                                    if (valueMap['status'] == 1) {
+                                      text =
+                                          "New Password & Login Details Sent On E-mail";
+                                      print(text);
+                                    } else {
+                                      text = valueMap['message'];
+                                      print(text);
+                                    }
+                                    final snackBar = SnackBar(
+                                        margin: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                    .size
+                                                    .height -
+                                                100,
+                                            right: 20,
+                                            left: 20),
+                                        content: Text(text),
+                                        behavior: SnackBarBehavior.floating);
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                  });
+                                },
+                                child: Container(
+                                  width: size.width / 1.4,
+                                  height: size.height / 20,
+                                  decoration: BoxDecoration(
+                                      color:
+                                          forpress ? onPressColor : buttonColor,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: kBoxShadows),
+                                  child: Center(
+                                    child: Text(
+                                      "Send",
+                                      style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: size.width / 22,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : SpinnerPage();
+            },
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Wrapper(
@@ -47,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _uiPage(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -74,16 +228,22 @@ class _LoginPageState extends State<LoginPage> {
                   height: size.height / 11,
                 ),
                 Text(
-                  "Hey,",
-                  style: poppinFonts(Colors.black, FontWeight.bold, 40),
+                  "Hi,",
+                  style: poppinFonts(Colors.black, FontWeight.bold, 35),
                 ),
-                Text("Login Now.",
-                    style: poppinFonts(Colors.black, FontWeight.bold, 40)),
+                Text("Franchise Owner.",
+                    style: poppinFonts(Colors.black, FontWeight.bold, 32)),
+                SizedBox(
+                  height: size.height / 30,
+                ),
+                Text("Please Login.",
+                    style: poppinFonts(
+                        const Color(0xFFd00657), FontWeight.bold, 20)),
                 SizedBox(
                   height: size.height / 30,
                 ),
                 SizedBox(
-                  height: size.height / 15,
+                  height: size.height / 40,
                 ),
                 Form(
                     key: _formKey,
@@ -97,10 +257,8 @@ class _LoginPageState extends State<LoginPage> {
                                 borderSide:
                                     BorderSide(color: Colors.grey, width: 2),
                               ),
-                              prefixIcon: Icon(
-                                Icons.person,
-                              ),
-                              hintText: "User ID",
+                              prefixIcon: Icon(Icons.phone_android),
+                              hintText: "Mobile Number",
                               hintStyle: poppinFonts(
                                   Colors.grey, FontWeight.normal, 17)),
                           onChanged: (value) {
@@ -121,28 +279,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               suffix: GestureDetector(
                                 onTap: () async {
-                                  apiObject = NetWorking(
-                                      password: "",
-                                      phoneNumber: _idController.text);
-
-                                  String? data =
-                                      await apiObject.forgetPassword();
-
-                                  Map valueMap = jsonDecode(data);
-
-                                  String text;
-
-                                  if (valueMap['status'] == 1) {
-                                    text =
-                                        "New Password & Login Details Sent On E-mail";
-                                  } else {
-                                    text =
-                                        "Something went Wrong, please try again !";
-                                  }
-                                  final snackBar =
-                                      SnackBar(content: Text(text));
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackBar);
+                                  MyModalBottomSheet(size);
                                 },
                                 child: Text(
                                   "Forgot?",
