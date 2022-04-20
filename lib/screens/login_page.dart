@@ -270,6 +270,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       children: [
                         TextFormField(
+                          scrollPadding: MediaQuery.of(context).viewInsets,
                           keyboardType: TextInputType.multiline,
                           controller: _idController,
                           validator: (value) {
