@@ -19,6 +19,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _forgotPassKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<ScaffoldState> _modelScaffoldKey = GlobalKey<ScaffoldState>();
   final _idController = TextEditingController();
@@ -56,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Container(
                         color: Color(0xff757575),
                         child: Container(
-                          height: 300,
+                          height: 320,
                           width: 200,
                           padding: EdgeInsets.all(20.0),
                           decoration: BoxDecoration(
@@ -84,35 +85,52 @@ class _LoginPageState extends State<LoginPage> {
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 35.0, right: 35),
-                                child: TextFormField(
-                                  keyboardType: TextInputType.phone,
-                                  controller: _forgotPassController,
-                                  decoration: InputDecoration(
-                                    labelText: "Enter Phone Number",
-                                    fillColor: Colors.white,
-                                    labelStyle: poppinFonts(
-                                        Colors.black, FontWeight.w100, 15),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                      borderSide: BorderSide(
-                                        color: Colors.black,
+                                child: Form(
+                                  key: _forgotPassKey,
+                                  child: TextFormField(
+                                    keyboardType: TextInputType.phone,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "phone number is required";
+                                      } else if (value.length != 10) {
+                                        return "phone number must be 10 digits long.";
+                                      } else if (!RegExp(
+                                              r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
+                                          .hasMatch(value)) {
+                                        return "Enter correct phone number";
+                                      }
+                                      return null;
+                                    },
+                                    controller: _forgotPassController,
+                                    decoration: InputDecoration(
+                                      labelText: "Enter Phone Number",
+                                      fillColor: Colors.white,
+                                      labelStyle: poppinFonts(
+                                          Colors.black, FontWeight.w100, 15),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 1.0,
+                                        ),
                                       ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                      borderSide: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                      ),
-                                    ),
+                                    onChanged: (value) {
+                                      print(value);
+                                    },
                                   ),
-                                  onChanged: (value) {
-                                    print(value);
-                                  },
                                 ),
                               ),
                               SizedBox(
-                                height: size.height / 30,
+                                height: size.height / 25,
                               ),
                               GestureDetector(
                                 onTap: () async {
@@ -120,50 +138,52 @@ class _LoginPageState extends State<LoginPage> {
                                     forpress = !forpress;
                                   });
 
-                                  apiObject = NetWorking(
-                                      password: "",
-                                      phoneNumber:
-                                          _forgotPassController.text.trim());
+                                  if (_forgotPassKey.currentState!.validate()) {
+                                    apiObject = NetWorking(
+                                        password: "",
+                                        phoneNumber:
+                                            _forgotPassController.text.trim());
 
-                                  setState(() {
-                                    isModalProcess = false;
-                                  });
-
-                                  await apiObject
-                                      .forgetPassword()
-                                      .then((value) {
                                     setState(() {
-                                      isModalProcess = true;
+                                      isModalProcess = false;
                                     });
 
-                                    Map valueMap = jsonDecode(value);
-                                    String text;
+                                    await apiObject
+                                        .forgetPassword()
+                                        .then((value) {
+                                      setState(() {
+                                        isModalProcess = true;
+                                      });
 
-                                    if (valueMap['status'] == 1) {
-                                      text =
-                                          "New Password & Login Details Sent On E-mail";
-                                      print(text);
-                                    } else {
-                                      text = valueMap['message'];
-                                      print(text);
-                                    }
-                                    final snackBar = SnackBar(
-                                        margin: EdgeInsets.only(
-                                            bottom: MediaQuery.of(context)
-                                                    .size
-                                                    .height -
-                                                100,
-                                            right: 20,
-                                            left: 20),
-                                        content: Text(text),
-                                        behavior: SnackBarBehavior.floating);
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(snackBar);
-                                  });
+                                      Map valueMap = jsonDecode(value);
+                                      String text;
+
+                                      if (valueMap['status'] == 1) {
+                                        text =
+                                            "New Password & Login Details Sent On E-mail";
+                                        print(text);
+                                      } else {
+                                        text = valueMap['message'];
+                                        print(text);
+                                      }
+                                      final snackBar = SnackBar(
+                                          margin: EdgeInsets.only(
+                                              bottom: MediaQuery.of(context)
+                                                      .size
+                                                      .height -
+                                                  100,
+                                              right: 20,
+                                              left: 20),
+                                          content: Text(text),
+                                          behavior: SnackBarBehavior.floating);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                    });
+                                  }
                                 },
                                 child: Container(
-                                  width: size.width / 1.4,
-                                  height: size.height / 20,
+                                  width: size.width / 1.5,
+                                  height: size.height / 15,
                                   decoration: BoxDecoration(
                                       color:
                                           forpress ? onPressColor : buttonColor,
@@ -171,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                                       boxShadow: kBoxShadows),
                                   child: Center(
                                     child: Text(
-                                      "Send",
+                                      "Submit",
                                       style: TextStyle(
                                           fontFamily: 'Poppins',
                                           fontSize: size.width / 22,
@@ -252,6 +272,18 @@ class _LoginPageState extends State<LoginPage> {
                         TextFormField(
                           keyboardType: TextInputType.multiline,
                           controller: _idController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "phone number is required";
+                            } else if (value.length != 10) {
+                              return "phone number must be 10 digits long.";
+                            } else if (!RegExp(
+                                    r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
+                                .hasMatch(value)) {
+                              return "Enter correct phone number";
+                            }
+                            return null;
+                          },
                           decoration: InputDecoration(
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
@@ -271,6 +303,12 @@ class _LoginPageState extends State<LoginPage> {
                         TextFormField(
                           keyboardType: TextInputType.multiline,
                           controller: _passwordController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "password is required";
+                            }
+                            return null;
+                          },
                           obscureText: true,
                           decoration: InputDecoration(
                               enabledBorder: UnderlineInputBorder(
@@ -305,46 +343,49 @@ class _LoginPageState extends State<LoginPage> {
                             setState(() {
                               press = !press;
                             });
-                            object.mobile = _idController.text;
-                            object.password = _passwordController.text;
 
-                            final SharedPreferences sharedPreferences =
-                                await SharedPreferences.getInstance();
+                            if (_formKey.currentState!.validate()) {
+                              object.mobile = _idController.text;
+                              object.password = _passwordController.text;
 
-                            sharedPreferences.setString(
-                                'mobile', object.mobile);
-                            sharedPreferences.setString(
-                                'password', object.password);
+                              final SharedPreferences sharedPreferences =
+                                  await SharedPreferences.getInstance();
 
-                            setState(() {
-                              isApiCallProcess = true;
-                            });
+                              sharedPreferences.setString(
+                                  'mobile', object.mobile);
+                              sharedPreferences.setString(
+                                  'password', object.password);
 
-                            ApiService apiService = ApiService();
-                            apiService.login(object).then((value) async {
                               setState(() {
-                                isApiCallProcess = false;
+                                isApiCallProcess = true;
                               });
 
-                              if (value.status == 1) {
-                                final SharedPreferences sharedPreferences =
-                                    await SharedPreferences.getInstance();
-                                sharedPreferences.setBool("isLoggedIn", true);
+                              ApiService apiService = ApiService();
+                              apiService.login(object).then((value) async {
+                                setState(() {
+                                  isApiCallProcess = false;
+                                });
 
-                                print(value.data);
-                                Data.setMap(value.data);
+                                if (value.status == 1) {
+                                  final SharedPreferences sharedPreferences =
+                                      await SharedPreferences.getInstance();
+                                  sharedPreferences.setBool("isLoggedIn", true);
 
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (_) {
-                                  return MyHomePage();
-                                }));
-                              } else {
-                                final snackBar =
-                                    SnackBar(content: Text(value.message));
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(snackBar);
-                              }
-                            });
+                                  print(value.data);
+                                  Data.setMap(value.data);
+
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (_) {
+                                    return MyHomePage();
+                                  }));
+                                } else {
+                                  final snackBar =
+                                      SnackBar(content: Text(value.message));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                }
+                              });
+                            }
 
                             print(object.toJson());
                           },
